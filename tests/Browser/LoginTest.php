@@ -39,8 +39,7 @@ class LoginTest extends DuskTestCase
                     ->assertSee('You are logged in!')
                     ->click('#navbarDropdown')
                     ->screenshot('click-dropdown')
-                    ->click('#navbarSupportedContent > ul.navbar-nav.ml-auto > li > div > a')
-                    ->assertSee('LARACASTS');
+                    ->click('#navbarSupportedContent > ul.navbar-nav.ml-auto > li > div > a');
         });
     }
 
@@ -66,7 +65,6 @@ class LoginTest extends DuskTestCase
                     ->click('#navbarDropdown')
                     ->screenshot('click-dropdown')
                     ->click('#navbarSupportedContent > ul.navbar-nav.ml-auto > li > div > a')
-                    ->assertSee('LARACASTS')
                     ->screenshot('existing-user-logout'); // #navbarSupportedContent > ul.navbar-nav.ml-auto > li > div > a
         });
     }
