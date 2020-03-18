@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\TodoController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/a-propos', 'AproposController@index')->name('apropos');
+
+Route::resource('todos', 'TodoController');
