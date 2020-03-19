@@ -1,3 +1,9 @@
+@extends('layouts.app')
+
+@section('content')
 @foreach ($datas as $data)
-<h4> Nom : {{ $data->name}} | Done : {{ $data->done }}</h4>
+<div class="alert alert-primary" role="alert">
+    <strong>{{ $data->name}} @if($data->done)<span class="badge badge-success">done</span>@endif</strong>
+</div>
 @endforeach
+@endsection
