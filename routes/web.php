@@ -25,4 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/a-propos', 'AproposController@index')->name('apropos');
 
+Route::get('todos/done', 'TodoController@done')->name('todos.done');
+Route::put('todos/makedone/{todo}', 'TodoController@makedone')->name('todos.makedone');
 Route::resource('todos', 'TodoController');
+
