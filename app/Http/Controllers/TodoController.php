@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class TodoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all todos.
      *
      * @return \Illuminate\Http\Response
      */
@@ -24,6 +24,15 @@ class TodoController extends Controller
     public function done()
     {
         $datas = Todo::where('done', 1)->paginate(10);
+        return view('todos.index', compact('datas'));
+    }
+
+    /**
+     * Display a listing of undone's todos
+     */
+    public function undone()
+    {
+        $datas = Todo::where('done', 0)->paginate(10);
         return view('todos.index', compact('datas'));
     }
 
