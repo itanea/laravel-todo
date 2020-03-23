@@ -2,7 +2,11 @@
 
 ## Release notes
 
-### Version 1.4
+### Version 1.4.1 - 20200323
+
+- add link, route, view for todos in progress
+
+### Version 1.4 - 20200322
 
 - add page index to list all todos
 - status design (currents / done)
