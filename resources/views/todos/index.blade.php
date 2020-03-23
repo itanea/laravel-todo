@@ -1,20 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-<a name="" id="" class="btn btn-warning my-4" href="{{ route('todos.create') }}" role="button">Ajouter une todo</a>
-{{-- Done todos link --}}
+<a name="" id="" class="btn btn-primary my-4" href="{{ route('todos.create') }}" role="button">Ajouter une todo</a>
+{{-- Done's todos link --}}
 @if (Route::currentRouteName() == 'todos.index')
+<a name="" id="" class="btn btn-warning my-4" href="{{ route('todos.undone') }}" role="button">Voir les todos
+    ouvertes</a>
 <a name="" id="" class="btn btn-success my-4" href="{{ route('todos.done') }}" role="button">Voir les todos
     terminées</a>
 {{-- All todos --}}
 @elseif (Route::currentRouteName() == 'todos.done')
-<a name="" id="" class="btn btn-info my-4" href="{{ route('todos.index') }}" role="button">Voir toutes les Todos</a>
+<a name="" id="" class="btn btn-dark my-4" href="{{ route('todos.index') }}" role="button">Voir toutes les todos</a>
+<a name="" id="" class="btn btn-warning my-4" href="{{ route('todos.undone') }}" role="button">Voir les todos
+    ouvertes</a>
+{{-- Undone's todos link --}}
+@elseif (Route::currentRouteName() == 'todos.undone')
+<a name="" id="" class="btn btn-dark my-4" href="{{ route('todos.index') }}" role="button">Voir toutes les todos</a>
+<a name="" id="" class="btn btn-success my-4" href="{{ route('todos.done') }}" role="button">Voir les todos
+    terminées</a>
 @endif
 {{-- All todos title --}}
 @if (Route::currentRouteName() == 'todos.index')
 <h1>Toutes les todos</h1>
-{{-- Done todos links --}}
+{{-- Undone's todos title --}}
+@elseif (Route::currentRouteName() == 'todos.undone')
+<h1>Toutes les todos ouvertes</h1>
 @else
+{{-- Done's todos title --}}
 <h1>Todos terminées</h1>
 @endif
 @foreach ($datas as $data)
