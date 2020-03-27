@@ -3,10 +3,48 @@
 namespace App\Http\Controllers;
 
 use App\Todo;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
+
+
+    public $users;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->users = User::getAllUsers();
+    }
+
+    /**
+     * Assign a todo to an user
+     *
+     * @param  App\Todo  $todo
+     * @param  App\user  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function affectedto(Todo $todo, User $user)
+    {
+
+        $todo->affectedTo_id = $user->id == Auth::user()->id ? 0 : $user->id;
+        $todo->affectedBy_id = Auth::user()->id;
+        $todo->update();
+
+        $message = $user->id == Auth::user()->id ?
+            "La todo <span class='badge badge-dark'>#$todo->id</span> m'a bien été ré-affectée." :
+            "La todo <span class='badge badge-dark'>#$todo->id</span> a bien été affectée à $user->name.";
+        toastr()->success($message);
+        return back();
+    }
+
     /**
      * Display a listing of all todos.
      *
@@ -14,8 +52,13 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $datas = Todo::orderBy('id', 'desc')->paginate(10);
-        return view('todos.index', compact('datas'));
+        //$datas = Todo::where('creator_id', $user->id)->orderBy('id', 'desc')->paginate(10);
+        $datas = Auth::user()->todos()->orderBy('id', 'desc')->paginate(10);
+        $users = $this->users;
+
+        // $affectedto = Todo::where('affectedTo_id', Auth::user()->id)->paginate(10);
+        //$datas = Todo::orderBy('id', 'desc')->paginate(10);
+        return view('todos.index', compact('datas', 'users'));
     }
 
     /**
@@ -23,7 +66,7 @@ class TodoController extends Controller
      */
     public function done()
     {
-        $datas = Todo::where('done', 1)->paginate(10);
+        $datas = Auth::user()->todos()->where('done', 1)->paginate(10);
         return view('todos.index', compact('datas'));
     }
 
@@ -32,7 +75,7 @@ class TodoController extends Controller
      */
     public function undone()
     {
-        $datas = Todo::where('done', 0)->paginate(10);
+        $datas = Auth::user()->todos()->where('done', 0)->paginate(10);
         return view('todos.index', compact('datas'));
     }
 
@@ -67,6 +110,8 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $todo = new Todo();
+        $todo->creator_id = Auth::user()->id;
+        $todo->affectedTo_id = Auth::user()->id;
         $todo->name = $request->name;
         $todo->description = $request->description;
         if(isset($request->done))
