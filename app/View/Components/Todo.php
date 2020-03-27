@@ -17,8 +17,6 @@ class Todo extends Component
      */
     public function __construct($datas, $users)
     {
-        //echo 'in app/view/Components';
-        //dd($data);
         $this->datas = $datas;
         $this->users = $users;
     }
@@ -30,7 +28,6 @@ class Todo extends Component
      */
     public function render()
     {
-        //dd($this->data);
         return view('components.todo');
     }
 }
