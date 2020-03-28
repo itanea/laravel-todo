@@ -49,7 +49,7 @@
             <form action="{{ route('todos.destroy', $data->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger mx-1 my-0" label="remove">Effacer</button>
+                <button type="submit" class="btn btn-danger mx-1 my-1" label="remove">Effacer</button>
             </form>
         </div>
     </div>
