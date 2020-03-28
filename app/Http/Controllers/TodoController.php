@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\TodoAffected;
 use App\Todo;
 use App\User;
 use Illuminate\Http\Request;
@@ -37,6 +38,8 @@ class TodoController extends Controller
         $todo->affectedTo_id = $user->id == Auth::user()->id ? 0 : $user->id;
         $todo->affectedBy_id = Auth::user()->id;
         $todo->update();
+
+        $user->notify(new TodoAffected($todo));
 
         $message = $user->id == Auth::user()->id ?
             "La todo <span class='badge badge-dark'>#$todo->id</span> m'a bien été ré-affectée." :
