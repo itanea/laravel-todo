@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" dusk="main-container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card text-white bg-dark">
                 <div class="card-header bg-secondary">Laravel Todolist</div>
 
