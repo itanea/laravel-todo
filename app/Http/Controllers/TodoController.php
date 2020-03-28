@@ -67,7 +67,8 @@ class TodoController extends Controller
     public function done()
     {
         $datas = Auth::user()->todos()->where('done', 1)->paginate(10);
-        return view('todos.index', compact('datas'));
+        $users = $this->users;
+        return view('todos.index', compact('datas', 'users'));
     }
 
     /**
@@ -76,7 +77,15 @@ class TodoController extends Controller
     public function undone()
     {
         $datas = Auth::user()->todos()->where('done', 0)->paginate(10);
-        return view('todos.index', compact('datas'));
+        $users = $this->users;
+        return view('todos.index', compact('datas', 'users'));
+    }
+
+    public function createdByMe()
+    {
+        $datas = Todo::where('creator_id', Auth::user()->id)->paginate(10);
+        $users = $this->users;
+        return view('todos.index', compact('datas', 'users'));
     }
 
 
