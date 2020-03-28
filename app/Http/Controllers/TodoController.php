@@ -92,6 +92,16 @@ class TodoController extends Controller
     }
 
     /**
+     * Action to change todo's status to undone
+     */
+    public function makeundone(Todo $todo)
+    {
+        $todo->done = 0;
+        $todo->update();
+        toastr()->success("La todo <span class='badge badge-dark'>#$todo->id</span> est à nouveau ouverte.");
+        return back();
+    }
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
