@@ -2,6 +2,9 @@
 
 ## Release notes
 
+### Version  1.5.1 - 20200328 - Bugfix
+
+- Fix kebab case on resources/views/components/todo.blade.php . Bug appears only for production, probably differences between Windows (dev) and Linux (prod) systems
 
 ### Version 1.5 - 20200328
 

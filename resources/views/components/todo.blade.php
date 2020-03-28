@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-sm">
             <p class="my-0">
-                <x-todos.todoInfo :info="$data" />
+                <x-todos.todo-info :info="$data" />
             </p>
 
             <details>
