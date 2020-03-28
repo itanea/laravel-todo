@@ -2,6 +2,18 @@
 
 ## Release notes
 
+
+### Version 1.5 - 20200328
+
+- Purpose : show todos for connected user
+- Add todo's view component
+- Add columns : affectedTo_id, affectedBy_id, creator_id
+- Add route to affect a todo to someone
+- Add makeundone function
+- update redirect route after login
+- Add an app's footer
+
+
 ### Version 1.4.1 - 20200323
 
 - add link, route, view for todos in progress
