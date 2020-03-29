@@ -34,6 +34,14 @@ public function boot()
 
 ## Release notes
 
+### Version 1.6 - 20200329
+
+- Add notifications system (mail & web)
+- Fix CSS little bug
+- Fix error due to the $users param missing
+- Improve filters buttons by using component view filters
+- Add created by me filter's button
+
 ### Version  1.5.1 - 20200328 - Bugfix
 
 - Fix kebab case on resources/views/components/todo.blade.php . Bug appears only for production, probably differences between Windows (dev) and Linux (prod) systems
