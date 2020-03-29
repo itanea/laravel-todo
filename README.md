@@ -1,5 +1,37 @@
 # Laravel Todo 
 
+## Install notes
+
+1. choose a directory on your server
+2. create a database for todo app (mysql supported)
+3. in your command line : 
+- git clone https://github.com/itanea/laravel-todo.git .
+- composer install
+- cp .env.example .env
+- php artisan key:generate
+- set your .env file with database credentials and others datas needed
+- php artisan migrate
+- register yourself
+- enjoy !
+
+Note : when you migrate if you have a message like :
+
+> [Illuminate\Database\QueryException]
+> SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes (SQL: alter table users add unique users_email_unique(email))
+
+you have to edit your AppServiceProvider.php file and inside the boot method set a default string length:
+
+`
+use Illuminate\Support\Facades\Schema;
+
+public function boot()
+{
+    Schema::defaultStringLength(191);
+}
+`
+
+
+
 ## Release notes
 
 ### Version  1.5.1 - 20200328 - Bugfix

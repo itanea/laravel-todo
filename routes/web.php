@@ -33,4 +33,3 @@ Route::get('todos/{todo}/affectedto/{user}', 'TodoController@affectedto')->name(
 Route::get('todos/createdbyme', 'TodoController@createdByMe')->name('todos.createdbyme');
 
 Route::resource('todos', 'TodoController');
-

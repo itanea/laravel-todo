@@ -31,7 +31,7 @@ class TodoAffected extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -58,7 +58,9 @@ class TodoAffected extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'todo_id' => $this->todo->id,
+            'affected_by' => $this->todo->todoAffectedBy->name,
+            'todo_name' => $this->todo->name,
         ];
     }
 }
