@@ -12,6 +12,7 @@
 - set your .env file with database credentials and others datas needed
 - php artisan migrate
 - register yourself
+- to automatically delete old done's todos (older than 7 days), add a line to your crontab like following : * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
 - enjoy !
 
 Note : when you migrate if you have a message like :
@@ -21,18 +22,23 @@ Note : when you migrate if you have a message like :
 
 you have to edit your AppServiceProvider.php file and inside the boot method set a default string length:
 
-`
+```
 use Illuminate\Support\Facades\Schema;
 
 public function boot()
 {
     Schema::defaultStringLength(191);
 }
-`
+```
 
 
 
 ## Release notes
+
+### Version 1.7 - 20200331
+
+- Add scheduling for deleting old done's todos (older than 7 days)
+- Add understandable subject to email notification
 
 ### Version 1.6 - 20200329
 

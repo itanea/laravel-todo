@@ -44,9 +44,10 @@ class TodoAffected extends Notification
     {
         return (new MailMessage)
                     ->from('noreply@laravel-todo.itanea.fr', 'Laravel Todo')
-                    ->line('La todo #' . $this->todo->id . ' vient de t\'être affecté par ' . $this->todo->todoAffectedBy->name . '.')
+                    ->subject('Tu as une nouvelle todo à finir')
+                    ->line("La todo (#" . $this->todo->id . ") '" . $this->todo->name . "' vient de t'être affecté par " . $this->todo->todoAffectedBy->name . ".")
                     ->action('Voir toutes mes todos', url('/todos'))
-                    ->line('Merci d\'utiliser notre application !');
+                    ->line("Merci d'utiliser notre application !");
     }
 
     /**

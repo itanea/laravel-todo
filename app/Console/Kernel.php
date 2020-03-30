@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Todo;
+use Illuminate\Support\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -26,6 +28,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->call(function () {
+            Todo::where('updated_at', '<', Carbon::now()->subDays(7))
+            ->where('done', 1)
+            ->delete();
+        })->hourly();;
     }
 
     /**
