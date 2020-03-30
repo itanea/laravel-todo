@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
             Todo::where('updated_at', '<', Carbon::now()->subDays(7))
             ->where('done', 1)
             ->delete();
-        })->everyMinute();;
+        })->hourly();;
     }
 
     /**
