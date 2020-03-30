@@ -49,18 +49,18 @@ class TodoController extends Controller
     }
 
     /**
-     * Display a listing of all todos.
+     * Display a listing of all todos (created by connected user or affected to connected user)
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //$datas = Todo::where('creator_id', $user->id)->orderBy('id', 'desc')->paginate(10);
-        $datas = Auth::user()->todos()->orderBy('id', 'desc')->paginate(10);
+        $userId = Auth::user()->id;
+        $datas = Todo::where(['creator_id' => $userId])->orWhere(['affectedTo_id' => $userId])->paginate(10);
+
+        //$datas = Auth::user()->todos()->orderBy('id', 'desc')->paginate(10);
         $users = $this->users;
 
-        // $affectedto = Todo::where('affectedTo_id', Auth::user()->id)->paginate(10);
-        //$datas = Todo::orderBy('id', 'desc')->paginate(10);
         return view('todos.index', compact('datas', 'users'));
     }
 
