@@ -23,6 +23,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     @toastr_css
+    @notify_css
 </head>
 
 <body>
@@ -162,6 +163,8 @@
 </body>
 @jquery
 @toastr_js
+@notify_js
 @toastr_render
+@notify_render
 
 </html>

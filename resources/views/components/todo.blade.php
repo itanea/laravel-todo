@@ -44,13 +44,27 @@
                 <button type="submit" class="btn btn-warning mx-1 my-0" style="min-width:90px;">Undone</button>
             </form>
             @endif
+            @can('edit', $data)
             <a name="" id="" class="btn btn-info mx-1 my-0" href="{{ route('todos.edit', $data->id) }}"
                 role="button">Editer</a>
+            @elsecannot('edit', $data)
+            <a name="" id="" class="btn btn-info mx-1 my-0 disabled" href="{{ route('todos.edit', $data->id) }}"
+                role="button">Editer</a>
+            @endcan
+            @can('delete', $data)
             <form action="{{ route('todos.destroy', $data->id) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger mx-1 my-1" label="remove">Effacer</button>
             </form>
+            @elsecannot('delete', $data)
+            <form action="{{ route('todos.destroy', $data->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger mx-1 my-1" label="remove" disabled
+                    style="cursor:default">Effacer</button>
+            </form>
+            @endcan
         </div>
     </div>
 </div>

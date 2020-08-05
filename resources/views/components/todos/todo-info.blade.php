@@ -13,7 +13,7 @@
     @elseif ($info->todoAffectedTo)
     {{ $info->todoAffectedTo ? ', affectée à ' . $info->todoAffectedTo->name : ''}}
     @endif
-    {{--    --}}
+    {{--  display affected by someone or by user himself  --}}
     @if ($info->todoAffectedTo && $info->todoAffectedBy && $info->todoAffectedBy->id == Auth::user()->id)
     par moi-même :D
     @elseif ($info->todoAffectedTo && $info->todoAffectedBy && $info->todoAffectedBy->id != Auth::user()->id)
